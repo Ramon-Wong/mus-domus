@@ -13,7 +13,7 @@ app.use(session({
 		secret: 'your_secret_key',
 		resave: false,
 		saveUninitialized: true,
-		cookie: { maxAge: 15 * 60 * 1000 }								                                // 15 mins
+		cookie: { maxAge: 15 * 60 * 1000 }																// 15 mins
 	}));
 
 // Serve static files
