@@ -28,3 +28,12 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'page/index.html'));
 });
 
+app.get('/events', (req, res) => {				// when refreshed 
+	
+	console.log('Setup SSE Events');
+
+	req.on('close', () => {		
+		req.app.locals.client = null;
+		res.end();
+	});
+});
