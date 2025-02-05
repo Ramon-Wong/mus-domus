@@ -28,7 +28,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 	function GetLoginMenu(){
 		overlay.classList.add('active'); 
 		login.classList.add('active');
-		
+
+		// overlay.className	= 'overlay.active'; 
+		// login.className		= 'login-div.active';
+
 		console.log('item clicked 5');
 	}
 
