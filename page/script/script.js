@@ -9,23 +9,42 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	const eventSource				= new EventSource('/events');
 	const rightMenu					= document.createElement('div');
-	const header					= document.createElement('div');
+	const login						= document.createElement('div');
+	const overlay					= document.createElement('div');
 
 	app.id							= 'app';
 	app.className					= ' ';
 
 	rightMenu.id					= 'right-menu';
 	rightMenu.className				= 'vertical-menu';
-
-	header.id						= 'header';
 	
+	overlay.id						= 'overlay';
+	overlay.className				= 'overlay';
+
+	login.id						= 'login-div';
+	login.className					= 'login-div';
+
+
+	function GetLoginMenu(){
+		overlay.classList.add('active'); 
+		login.classList.add('active');
+		
+		console.log('item clicked 5');
+	}
+
+	function ClearOverlay(){
+		overlay.className	= 'overlay'; 
+		login.className		= 'login-div';
+
+		console.log('item clicked 6');
+	}
 
 	const menuItems = [	{ id: 'rightMenu-item-1', text: 'Item 1', callback: () => { console.log('item clicked 1');} },
 						{ id: 'rightMenu-item-2', text: 'Item 2', callback: () => { console.log('item clicked 2');} },
 						{ id: 'rightMenu-item-3', text: 'Item 3', callback: () => { console.log('item clicked 3');} },
 						{ id: 'rightMenu-item-4', text: 'Item 4', callback: () => { console.log('item clicked 4');} },
-						{ id: 'rightMenu-item-5', text: 'Item 5', callback: () => { console.log('item clicked 5');} },
-						{ id: 'rightMenu-item-6', text: 'Item 6', callback: () => { console.log('item clicked 6');} }];
+						{ id: 'rightMenu-item-5', text: 'Item 5', callback: () => { GetLoginMenu();} },
+						{ id: 'rightMenu-item-6', text: 'Item 6', callback: () => { ClearOverlay();} }];
 
 	menuItems.forEach( item => {	
 		const link			= document.createElement('a');
@@ -37,21 +56,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 		rightMenu.appendChild(link);
 	});
 
+	body.appendChild(overlay);
+	body.appendChild(login);
 	body.appendChild(rightMenu);
-	body.appendChild(header);
 	body.appendChild(app);
 	
 	rightMenu.addEventListener('mouseleave', () => { rightMenu.style.display = 'none'; })
 
-	document.addEventListener('contextmenu', (e) => {	
+	document.addEventListener('contextmenu', (e) => {
+		// if( window.getComputedStyle(login).display === 'none'){ }
 		e.preventDefault();
 		const x = e.clientX;
 		const y = e.clientY;
-	
+		
 		console.log(`Right-click at (${x}, ${y})`);
 		rightMenu.style.left		= `${x}px`;
 		rightMenu.style.top			= `${y}px`;
 		rightMenu.style.display		= 'block'; // Show the menu
+
 	});
 
 	eventSource.onmessage = function(event){
