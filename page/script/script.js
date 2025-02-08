@@ -12,6 +12,38 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const login						= document.createElement('div');
 	const overlay					= document.createElement('div');
 
+	function CreateForm() {
+		const form = document.createElement('form'); // Create the form
+		const fields = [
+			{ type: 'text', id: 'username', name: 'username', label: 'Username:' },
+			{ type: 'password', id: 'password', name: 'password', label: 'Password:' }
+		];
+	
+		fields.forEach(field => {
+			const label = document.createElement('label');
+			label.textContent = field.label;
+			label.setAttribute('for', field.id);
+	
+			const input = document.createElement('input');
+			input.type = field.type;
+			input.id = field.id;
+			input.name = field.name;
+	
+			form.appendChild(label);
+			form.appendChild(input);
+		});
+	
+		// Create the submit button
+		const submitButton = document.createElement('button');
+		submitButton.type = 'submit';
+		submitButton.textContent = 'Login';
+	
+		form.appendChild(submitButton);
+	
+		return form;
+	}
+
+
 	app.id							= 'app';
 	app.className					= ' ';
 
@@ -24,13 +56,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 	login.id						= 'login-div';
 	login.className					= 'login-div';
 
+	document.addEventListener('keydown', (event) => {
+		if(event.key === 'Escape' && login.classList.contains('active')) {
+			console.log("ESCAPE");
+			ClearOverlay();
+		}		
+	});
 
+	login.appendChild(CreateForm());
+
+	
 	function GetLoginMenu(){
 		overlay.classList.add('active'); 
 		login.classList.add('active');
-
-		// overlay.className	= 'overlay.active'; 
-		// login.className		= 'login-div.active';
 
 		console.log('item clicked 5');
 	}
@@ -58,6 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		rightMenu.appendChild(link);
 	});
+
 
 	body.appendChild(overlay);
 	body.appendChild(login);
