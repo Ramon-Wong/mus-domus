@@ -13,11 +13,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const login						= _CreateElement( document.createElement('div'), 		'login-div',		'login-div');
 	const overlay					= _CreateElement( document.createElement('div'), 		'overlay',			'overlay');
 	
+	loginButton.textContent			='login';
+	loginButton.addEventListener('click', () =>{
+		GetLoginMenu();
+		console.log("Login form request");
+	});
+
+
 	const fields = [
 		{ type: 'text', id: 'username', name: 'username', label: 'Username:' },
 		{ type: 'password', id: 'password', name: 'password', label: 'Password:' }
 	];
-
 
 
 	document.addEventListener('keydown', (event) => {
@@ -26,6 +32,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 			ClearOverlay();
 		}		
 	});
+
+
 
 	login.appendChild(_CreateForm( fields));
 
