@@ -1,16 +1,18 @@
-
+import { printMessage, _CreateElement } from './functions.js';
 
 
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-	const body						= document.body;
-	const app						= document.getElementById('loader');
-
 	const eventSource				= new EventSource('/events');
-	const rightMenu					= document.createElement('div');
-	const login						= document.createElement('div');
-	const overlay					= document.createElement('div');
+
+	const body						= document.body;
+	const app						= _CreateElement( document.getElementById('loader'),	'app',				' ');
+	const rightMenu					= _CreateElement( document.createElement('div'), 		'right-menu',		'vertical-menu');
+	const loginButton				= _CreateElement( document.createElement('div'), 		'login-button',		'floating-login');
+	const login						= _CreateElement( document.createElement('div'), 		'login-div',		'login-div');
+	const overlay					= _CreateElement( document.createElement('div'), 		'overlay',			'overlay');
+	
 
 	function CreateForm() {
 		const form = document.createElement('form'); // Create the form
@@ -43,18 +45,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return form;
 	}
 
-
-	app.id							= 'app';
-	app.className					= ' ';
-
-	rightMenu.id					= 'right-menu';
-	rightMenu.className				= 'vertical-menu';
-	
-	overlay.id						= 'overlay';
-	overlay.className				= 'overlay';
-
-	login.id						= 'login-div';
-	login.className					= 'login-div';
 
 	document.addEventListener('keydown', (event) => {
 		if(event.key === 'Escape' && login.classList.contains('active')) {
@@ -99,6 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 	body.appendChild(overlay);
+	body.appendChild(loginButton);
 	body.appendChild(login);
 	body.appendChild(rightMenu);
 	body.appendChild(app);

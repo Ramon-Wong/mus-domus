@@ -2,8 +2,10 @@
 
 body { font-family: sans-serif; line-height: 1.5; background: #f3f3f3; align-items: center; margin: 0;}
 
-#app { min-height: 400px; padding: 20px; text-align: center;  background: #FDFDFD;}
-#app, #header { width: 500px; border: 1px solid #9d9d9d; margin: 10px auto;}
+#app { min-height: 400px; padding: 20px;}
+#app, #header { width: 500px; margin: 40px auto;}
+
+#app, .floating-login {text-align: center;  background: #FDFDFD; border: 1px solid #9d9d9d; }
 
 #header { height: 100px; padding: 20px; background: #FDFDFD;}
 
@@ -21,7 +23,7 @@ input, button { border-radius: 5px; }
 @keyframes l1 {to{transform: rotate(.5turn)}}
 
 
-#app, #header, .login-div  { border-radius: 10px; }
+#app, #header, .login-div, .floating-login { border-radius: 10px; }
 .overlay, .login-div { opacity: 0; visibility: hidden; position: fixed; transition: opacity 0.3s ease, visibility 0.3s ease;}
 
 .overlay{ top: 0; left: 0; width: 100%; height: 100%; background-color: rgba( 155, 155, 155, 0.5); z-index: 1000; }
@@ -35,3 +37,5 @@ input, button { border-radius: 5px; }
 .vertical-menu a { background-color: #eee; color: black; display: block; padding: 8px 16px; text-decoration: none; font-size: 12px;}
 .vertical-menu a:hover { background-color: #ccc;}
 .vertical-menu a.active { background-color: #04AA6D; color: white;}
+
+.floating-login { position: fixed; top: 5px; right: 10px; width: 100px; height: 50px; cursor: pointer; z-index: 999;}
