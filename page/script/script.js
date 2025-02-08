@@ -1,4 +1,4 @@
-import { printMessage, _CreateElement } from './functions.js';
+import { printMessage, _CreateElement, _CreateForm} from './functions.js';
 
 
 
@@ -13,37 +13,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const login						= _CreateElement( document.createElement('div'), 		'login-div',		'login-div');
 	const overlay					= _CreateElement( document.createElement('div'), 		'overlay',			'overlay');
 	
+	const fields = [
+		{ type: 'text', id: 'username', name: 'username', label: 'Username:' },
+		{ type: 'password', id: 'password', name: 'password', label: 'Password:' }
+	];
 
-	function CreateForm() {
-		const form = document.createElement('form'); // Create the form
-		const fields = [
-			{ type: 'text', id: 'username', name: 'username', label: 'Username:' },
-			{ type: 'password', id: 'password', name: 'password', label: 'Password:' }
-		];
-	
-		fields.forEach(field => {
-			const label = document.createElement('label');
-			label.textContent = field.label;
-			label.setAttribute('for', field.id);
-	
-			const input = document.createElement('input');
-			input.type = field.type;
-			input.id = field.id;
-			input.name = field.name;
-	
-			form.appendChild(label);
-			form.appendChild(input);
-		});
-	
-		// Create the submit button
-		const submitButton = document.createElement('button');
-		submitButton.type = 'submit';
-		submitButton.textContent = 'Login';
-	
-		form.appendChild(submitButton);
-	
-		return form;
-	}
 
 
 	document.addEventListener('keydown', (event) => {
@@ -53,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		}		
 	});
 
-	login.appendChild(CreateForm());
+	login.appendChild(_CreateForm( fields));
 
 	
 	function GetLoginMenu(){
